@@ -10,17 +10,30 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { 
-            presets: ["@babel/preset-env", "@babel/react"],
-            plugins: ["dynamic-import-node"] }
+        options: {
+          presets: ["@babel/preset-env", "@babel/react"],
+          plugins: ["dynamic-import-node"]
+        }
       },
-      { 
+      {
+        test: /\.(png|svg)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10000,
+              outputPath: "asset"
+            }
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         loaders: 'babel-loader',
-        options: { 
-            presets: ["@babel/preset-env"]
+        options: {
+          presets: ["@babel/preset-env"]
         }
-    },
+      },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
@@ -34,6 +47,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: "./public/index.html"
-      })]
+      template: "./public/index.html"
+    })]
 };
