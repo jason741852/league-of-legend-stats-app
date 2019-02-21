@@ -118,7 +118,7 @@ export default class App extends React.PureComponent
 					style={{
 						height: "100px"
 					}}
-					image={GetImage(`profileicon/${summoner.profileIconId}`, "png")} />
+					image={GetImage(`profileicon/${Math.min(summoner.profileIconId, 21)}`, "png")} />
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
 						{summoner.name}
