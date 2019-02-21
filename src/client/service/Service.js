@@ -1,4 +1,5 @@
 import Request from "./request/Request";
+import { champion } from "./champion";
 
 export default class Service
 {
@@ -26,5 +27,12 @@ export default class Service
         {
             return err;
         }
+    }
+
+    static getChampionInfo(championId)
+    {
+        const key = Object.keys(champion.data).find((nth) => champion.data[nth].key == championId);
+
+        return champion.data[key];
     }
 }

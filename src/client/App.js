@@ -88,16 +88,17 @@ export default class App extends React.PureComponent
 				{
 					const participantIdentity = nth.participantIdentities.find((nth) => nth.player.accountId === this.state.summoner.accountId);
 					const participant = nth.participants.find((nth) => nth.participantId === participantIdentity.participantId);
-
 					const stats = participant.stats;
 					const isWinner = stats.win;
-					const killAssistDeathRatio = `${stats.kills} / ${stats.assists} \ ${stats.deaths}`;
+					const killAssistDeathRatio = `${stats.kills} / ${stats.assists} / ${stats.deaths}`;
+					const champion = Service.getChampionInfo(participant.championId.toString());
 
 					return (
 						<Grid
 							container
 							direction="column"
 							alignItems="center" >
+							{`Champion: ${champion.name} `}
 							{`${`Result: ${isWinner ? "Victory" : "Defeat"} `}`}
 							{`Game Duration: ${nth.gameDuration} `}
 							{`K/A/D: ${killAssistDeathRatio}`}
