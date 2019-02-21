@@ -25,9 +25,17 @@ module.exports = (app) =>
                 try
                 {
                     const summonerDto = await GetPlayerRequest(summonerName);
+                    console.log(summonerDto);
                     const matchlistDto = await GetMatchListRequest(summonerDto.accountId);
-                    const getMatchesRequest = matchlistDto.matches.map((nth) => GetMatchRequest(nth.gameId));
-                    const matches = await ResolveSequential(getMatchesRequest);
+                    console.log(matchlistDto);
+
+                    let matches = {};
+
+                    if (matchlistDto.matches)
+                    {
+                        const getMatchesRequest = matchlistDto.matches.map((nth) => GetMatchRequest(nth.gameId));
+                        matches = await ResolveSequential(getMatchesRequest);
+                    }
 
                     res.status(200);
                     res.json({
@@ -41,6 +49,7 @@ module.exports = (app) =>
                 }
                 catch (err)
                 {
+                    console.log(err);
                     res.status(400);
                     res.json({
                         result: "Failure",

@@ -19,7 +19,6 @@ export default class Service
             else
             {
                 console.log(response.reason);
-
                 throw (response.reason);
             }
         }

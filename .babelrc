@@ -1,4 +1,10 @@
 {
-    "presets": ["@babel/env", "@babel/preset-react"],
-    "plugins": ["dynamic-import-node"]
+    "presets": [
+        "@babel/env",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "dynamic-import-node",
+        "@babel/plugin-proposal-class-properties"
+    ]
 }

@@ -1,20 +1,26 @@
 import { Typography, AppBar, TextField, Grid, Button } from "@material-ui/core";
 import React from "react";
+import Service from "./service/Service";
 import "./style/style.css";
 
 export default class App extends React.PureComponent
 {
+
 	constructor(props)
 	{
 		super(props);
 
 		this.state =
 			{
-				summerName: ""
+				summonerName: "",
+				summoner: {},
+				matchList: {},
+				matches: {}
 			}
 	}
 
-	render() {
+	render()
+	{
 		return (
 			<>
 				{this.RenderHeader()}
@@ -43,28 +49,14 @@ export default class App extends React.PureComponent
 		);
 	}
 
-	RenderHeader()
-	{
-		return (
-			<AppBar
-				elevation={0}
-				position="static">
-				<Typography
-					variant={"h1"}>
-					{"League of Lengend Stats App"}
-				</Typography>
-			</AppBar>
-		);
-	}
-
 	RenderInputField()
 	{
 		return (
 			<>
 				<TextField
 					label={"Enter a Summoner's name"}
-					value={this.state.summerName}
-					onChange={(evt) => this.setState({ summerName: evt.target.value })}
+					value={this.state.summonerName}
+					onChange={(evt) => this.setState({ summonerName: evt.target.value })}
 					autoFocus />
 				<Button
 					variant="contained"
@@ -81,8 +73,23 @@ export default class App extends React.PureComponent
 		return (null)
 	}
 
-	HandleOnSearchClicked()
+	async HandleOnSearchClicked()
 	{
-		// todo
+		const summonerName = this.state.summonerName;
+
+		try
+		{
+			const response = await Service.GetPlayerInfo(summonerName);
+
+			this.setState({
+				summoner: response.summonerDto,
+				matchlist: response.matchlistDto,
+				matches: response.matches
+			})
+		}
+		catch (err)
+		{
+			console.log(err);
+		}
 	}
 }
