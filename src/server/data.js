@@ -1,5 +1,5 @@
 const Config = {
-    "riot.apiKey": "RGAPI-df5f62e1-a5a2-4787-88a7-e79b52108861" // shhhh
+    "riot.apiKey": "RGAPI-ef0b9c3f-9b1c-4aa6-8b54-d5d2545ed35d" // shhhh
 }
 
 module.exports = Config;

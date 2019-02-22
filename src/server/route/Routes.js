@@ -50,7 +50,7 @@ module.exports = (app) =>
                 catch (err)
                 {
                     console.log(err);
-                    res.status(400);
+                    res.status(200);
                     res.json({
                         result: "Failure",
                         reason: "Cannot find player"
